@@ -6,6 +6,7 @@
 // optimize in round 2 with pointers
 
 // brute force
+// O(N^2) time and O(1) space
 var twoSum = function(nums, target) {
   for(let i = 0; i < nums.length-1; i++) {
       for(let j = i+1; j < nums.length; j++) {
@@ -13,5 +14,18 @@ var twoSum = function(nums, target) {
               return [i, j]
           }
       }
+  }
+};
+
+// O(N) time and O(N) space
+var twoSum = function(nums, target) {
+  let dict = {}
+  for(let i = 0; i < nums.length-1; i++) {
+      let currentNum = nums[i]
+      let targetDif = target -  nums[i]
+      if(dict[targetDif] >= 0) {
+          return [i, dict[targetDif]]
+      }
+      dict[currentNum] = i
   }
 };
