@@ -20,7 +20,7 @@ var twoSum = function(nums, target) {
 // O(N) time and O(N) space
 var twoSum = function(nums, target) {
   let dict = {}
-  for(let i = 0; i < nums.length-1; i++) {
+  for(let i = 0; i < nums.length; i++) {
       let currentNum = nums[i]
       let targetDif = target -  nums[i]
       if(dict[targetDif] >= 0) {
