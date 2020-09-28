@@ -53,6 +53,6 @@ var getIntersectionNode = function(headA, headB) {
         first = first === null ? headB : first.next;
         second = second === null ? headA : second.next;
     }
-    return curA;
+    return first;
 };
 
