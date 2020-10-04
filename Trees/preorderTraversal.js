@@ -24,29 +24,22 @@ var preorderTraversal = function(root, vals = []) {
 };
 
 // iterative
-var preorderTraversal = function(root, vals = []) {
-  // if root is null, return empty
-  if(root === null) return []
-  let stack = []
-  while(root) {
-      vals.push(root.val)
-      // if left and right exist, save right and traverse left
-      if(root.left && root.right) {
-          stack.push(root.right)
-          root = root.left
-          // if only left exists, traverse left
-      } else if (root.left) {
-          root = root.left
-          // if only right exists, traverse right
-      } else if (root.right) {
-          root = root.right
-          // if there are no more child nodes, check if anything is waiting in the stack, if so use it
-      } else if(stack.length > 0) {
-          let redirect = stack.pop()
-          root = redirect
-          // if theres nothing left in the tree and nothing in the stack youre done traversing
-      } else {
-          return vals;
+var preorderTraversal = function(root) {
+  if (root == null) return [];
+  // start with root on stack
+  let stack = [root];
+  let result = [];
+  while (stack.length > 0) {
+    // pop top of stack and push node to the result
+      let node = stack.pop();
+      result.push(node.val);
+      // check right side first bc we want left at end of stack (last in first out)
+      if (node.right) {
+          stack.push(node.right);
+      }
+      if (node.left) {
+          stack.push(node.left);
       }
   }
+  return result;
 };
