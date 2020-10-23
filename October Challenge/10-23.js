@@ -19,6 +19,8 @@
  * @param {number} target
  * @return {number}
  */
+// time: O(n)
+// space: O(1)
 var search = function (reader, target) {
   let res = null
   let idx = 0
