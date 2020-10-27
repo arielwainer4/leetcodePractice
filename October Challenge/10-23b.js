@@ -23,3 +23,22 @@ var find132pattern = function(nums) {
   }
   return false
 };
+
+// time: O(n)
+// space = O(n)
+var find132pattern = function(nums) {
+  var stack=[],
+  min = -Infinity;
+  for(var i=nums.length-1; i>=0; i--){
+    if(nums[i] < min)
+        return true;
+    else{
+        while(stack.length>0 && nums[i]> stack[stack.length-1]){
+        min = stack.pop();
+        }
+        stack.push(nums[i]);
+    }
+}
+return false;
+
+};
