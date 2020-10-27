@@ -28,3 +28,31 @@ var detectCycle = function(head) {
   }
   return null
 };
+
+
+// Challenge: Attempt in O(1) space
+// Point of intersection with slow/fast pointers is equidistant from the entrance to the cycle as the head node is
+
+var detectCycle = function(head) {
+  if(!head) return null
+
+  let intersect = findIntersect(head)
+  if(!intersect) return intersect
+
+  while(head !== intersect) {
+      head = head.next
+      intersect = intersect.next
+  }
+  return head
+}
+
+function findIntersect(node) {
+  let slow = node
+  let fast = node
+  while(fast && fast.next) {
+      slow = slow.next
+      fast = fast.next.next
+      if(slow === fast) return fast
+  }
+  return null
+}
