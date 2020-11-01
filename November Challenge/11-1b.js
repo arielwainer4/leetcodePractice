@@ -27,3 +27,13 @@ var getDecimalValue = function(head) {
   num = num.join('')
   return parseInt(num,2)
 };
+
+// alt with O(1) space
+let getDecimalValue = function(head) {
+  let result = 0
+  while (head) {
+      result = result * 2 + head.val
+      head = head.next
+  }
+  return result
+};
