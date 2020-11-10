@@ -22,3 +22,26 @@ var flipAndInvertImage = function(A) {
   }
   return res
 };
+
+
+// In place solution
+// time: O(r*c)
+// space: O(1)
+var flipAndInvertImage = function(A) {
+  for(let row = 0; row < A.length; row++) {
+      let s = 0
+      let e = A[row].length-1
+      while(s<=e) {
+          if(s === e) {
+              A[row][s] = A[row][s] === 0 ? 1 : 0
+          }else {
+              let temp = A[row][s] === 0 ? 1 : 0
+              A[row][s] = A[row][e] === 0 ? 1 : 0
+              A[row][e] = temp
+          }
+          s += 1
+          e -= 1
+      }
+  }
+  return A
+};
