@@ -50,3 +50,23 @@ var connect = function(root) {
   }
   return root
 };
+
+// alt with constant space
+// connect child level while iterating parent level so you can iterate through like you would a linked list
+function connect(root) {
+  if(!root) return null
+  let leftMost = root
+
+  while(leftMost.left !== null) {
+      let head = leftMost
+      while(head) {
+          head.left.next = head.right
+          if(head.next) {
+              head.right.next = head.next.left
+          }
+          head = head.next
+      }
+      leftMost = leftMost.left
+  }
+  return root
+}
