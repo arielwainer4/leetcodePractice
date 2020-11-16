@@ -46,3 +46,37 @@ var longestMountain = function(A) {
   }
   return maxLen
 };
+
+
+// alt solution with while loops
+/**
+ * @param {number[]} A
+ * @return {number}
+ */
+var longestMountain = function(A) {
+  let maxLen = 0
+  let start = 0
+
+  while(start < A.length-1) {
+      let up = 0
+      let down = 0
+      while(A[start+1] === A[start]) start += 1
+      while(A[start+1] > A[start]) {
+          if(up === 0) up = 1
+          up += 1
+          start += 1
+      }
+      while(A[start] > A[start+1]) {
+          if(up > 0) {
+              down += 1
+          }
+          start += 1
+      }
+      if(up === 0 || down === 0) {
+          up = 0
+          down = 0
+      }
+      maxLen = Math.max(maxLen, up+down)
+  }
+  return maxLen
+};
