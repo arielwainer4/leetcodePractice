@@ -14,7 +14,7 @@
  * @param {number} high
  * @return {number}
  */
-
+// with interior helper function modifying global sum
 var rangeSumBST = function(root, low, high) {
   let sum = 0
   if(!root) return sum
@@ -38,6 +38,7 @@ var rangeSumBST = function(root, low, high) {
   return sum
 };
 
+// recursive DFS hitting every node
 
 var rangeSumBST = function(root, low, high) {
   if(!root) return 0
@@ -46,4 +47,16 @@ var rangeSumBST = function(root, low, high) {
   let self = root.val >= low && root.val <= high ? root.val : 0
 
   return left + right + self
+};
+
+// recursive DFS only hitting relative nodes
+var rangeSumBST = function(root, low, high) {
+  if(!root) return 0
+  if(root.val > low && root.val < high) return rangeSumBST(root.left,low,high) + rangeSumBST(root.right,low,high) + root.val
+
+  else if(root.val === low) return rangeSumBST(root.right,low,high) + root.val
+  else if(root.val === high) return rangeSumBST(root.left,low,high) + root.val
+  else if(root.val < low) return rangeSumBST(root.right,low,high)
+  else if(root.val > high) return rangeSumBST(root.left,low,high)
+  else return 0
 };
