@@ -16,3 +16,25 @@ function plant(idx, bed, n) {
 var canPlaceFlowers = function(flowerbed, n) {
   return plant(0, flowerbed, n)
 };
+
+
+
+// alt iterative solution
+var canPlaceFlowers = function(flowerbed, n) {
+  if(n === 0) return true
+  for(let i = 0; i < flowerbed.length; i++) {
+      if(flowerbed[i+1] === 1) {
+          i += 2
+          continue;
+      }
+      else if(flowerbed[i] === 1) {
+          i += 1
+          continue;
+      }
+      else if(flowerbed[i-1] === 1) continue;
+      flowerbed[i] = 1
+      n -= 1
+      if(n === 0) return true
+  }
+  return n === 0
+};
