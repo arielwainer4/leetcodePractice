@@ -55,3 +55,21 @@ var connect = function(root) {
   }
   return root
 };
+
+// alt iterative solution with O(N) space
+function connect(root) {
+  if(!root) return root
+  let level = [root]
+
+  while(level.length > 0) {
+      let nextLevel = []
+      for(let i = 0; i < level.length; i++) {
+          let node = level[i]
+          if(level[i+1]) node.next = level[i+1]
+          if(node.left) nextLevel.push(node.left)
+          if(node.right) nextLevel.push(node.right)
+      }
+      level = nextLevel
+  }
+  return root
+}
